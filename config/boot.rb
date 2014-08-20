@@ -36,5 +36,5 @@ require env_file
 
 # Load Resque configuration and controller
 require 'resque'
-Resque.redis = REDIS_URL || "localhost:6379/resque:#{ENV['ROBOT_ENVIRONMENT']}"
+Resque.redis = (defined? REDIS_URL) ? REDIS_URL : "localhost:6379/resque:#{ENV['ROBOT_ENVIRONMENT']}"
 require 'robot-controller'

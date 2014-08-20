@@ -16,12 +16,13 @@ set :deploy_to, '/home/lyberadmin/my-robot-suite'
 
 # Default value for :scm is :git
 # set :scm, :git
-set :scm, :git
+
 # Default value for :format is :pretty
 # set :format, :pretty
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
+set :log_level, :info
 
 # Default value for :pty is false
 # set :pty, true
