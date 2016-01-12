@@ -2,11 +2,10 @@
 module Robots       # Robot package
   module DorRepo    # Use DorRepo/SdrRepo to avoid name collision with Dor module
     module MyDemo   # This is your workflow package name (using CamelCase)
-
       class C3Third # This is your robot name (using CamelCase)
         # Build off the base robot implementation which implements
         # features common to all robots
-        include LyberCore::Robot 
+        include LyberCore::Robot
 
         def initialize
           super('dor', 'myDemoWF', 'c3-third', check_queued_status: true) # init LyberCore::Robot
@@ -27,7 +26,6 @@ module Robots       # Robot package
           #
         end
       end
-
     end
   end
 end
