@@ -1,9 +1,6 @@
 # config valid only for Capistrano 3.1
 # lock '3.2.1'
 
-set :rvm_type, :system
-set :rvm_ruby_string, 'ruby-1.9.3-p484' # dor-services requires 1.9.3
-
 set :application, 'myDemoWF'
 set :repo_url, 'https://github.com/sul-dlss/my-robot-suite.git'
 set :branch, 'master'
@@ -12,7 +9,7 @@ set :branch, 'master'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/lyberadmin/my-robot-suite'
+set :deploy_to, "/home/lyberadmin/#{fetch(:application)}"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -39,29 +36,13 @@ set :log_level, :info
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :stages, %w(development staging production)
-set :default_stage, 'development'
 set :linked_dirs, %w(log run config/environments config/certs)
 
 namespace :deploy do
-  # This is a try to configure a clean install
-  # desc 'Start application'
-  # task :start do
-  #   invoke 'deploy'
-  #  on roles(:app), in: :sequence, wait: 10 do
-  #    within release_path do
-  #      execute :bundle, :install
-  #      execute :bundle, :exec, :controller, :boot
-  #    end
-  #  end
-  # end
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 10 do
       within release_path do
-        # Uncomment  with the first deploy
-        # execute :bundle, :install
-
         # Comment with the first deploy
         test :bundle, :exec, :controller, :stop
         test :bundle, :exec, :controller, :quit
@@ -73,4 +54,4 @@ namespace :deploy do
   end
 
   after :publishing, :restart
- end
+end

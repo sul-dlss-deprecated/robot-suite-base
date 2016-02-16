@@ -13,5 +13,10 @@ gem 'robot-controller', '~> 1.0' # requires Resque
 group :development, :test do
   gem 'rspec'
   gem 'yard'
+end
+
+group :deployment do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
   gem 'dlss-capistrano'
 end
